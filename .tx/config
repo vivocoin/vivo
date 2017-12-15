@@ -1,0 +1,7 @@
+[main]
+host = https://www.transifex.com
+
+[vivo.qt-translation-012x]
+file_filter = src/qt/locale/vivo_<lang>.ts
+source_file = src/qt/locale/vivo_en.ts
+source_lang = en

@@ -1,0 +1,11 @@
+[Protocol]
+exec=vivo-qt '%u'
+protocol=vivo
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

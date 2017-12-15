@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Vivo
+Comment=Vivo P2P Cryptocurrency
+Exec=vivo-qt %u
+Terminal=false
+Type=Application
+Icon=vivo128
+MimeType=x-scheme-handler/vivo;
+Categories=Office;Finance;
+Name[en_US]=vivo-qt.desktop

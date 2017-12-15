@@ -1,0 +1,6 @@
+usr/local/bin/vivo-qt usr/bin
+share/pixmaps/vivo32.xpm usr/share/pixmaps
+share/pixmaps/vivo16.xpm usr/share/pixmaps
+share/pixmaps/vivo128.png usr/share/pixmaps
+debian/vivo-qt.desktop usr/share/applications
+debian/vivo-qt.protocol usr/share/kde4/services/
