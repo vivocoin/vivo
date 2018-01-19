@@ -127,8 +127,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x35d3553e7bdc0568c8c37074cb7cc4bd930bd57ceff0799ddb0279487d3fd8df"));
 
 
-        vSeeds.push_back(CDNSSeedData("vivonodes.space", "dns.vivonodes.space"));
-        vSeeds.push_back(CDNSSeedData("shmest.win", "dns.shmest.win"));
+        vSeeds.push_back(CDNSSeedData("vivoseeds.win", "vivoseed1.vivoseeds.win"));
 
         // Vivo addresses start with 'V'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,70);
