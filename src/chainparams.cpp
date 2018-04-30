@@ -127,7 +127,8 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x35d3553e7bdc0568c8c37074cb7cc4bd930bd57ceff0799ddb0279487d3fd8df"));
 
 
-        vSeeds.push_back(CDNSSeedData("vivoseeds.win", "vivoseed1.vivoseeds.win"));
+        vSeeds.push_back(CDNSSeedData("vivoseed.dynu.net", "vivoseed.dynu.net"));
+        vSeeds.push_back(CDNSSeedData("seeds.vivocoin.net", "seed.seeds.vivocoin.net"));
 
         // Vivo addresses start with 'V'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,70);
@@ -157,10 +158,11 @@ public:
 
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
-            (    0, uint256S("0x00000f6be3e151f9082a2b82c2916192a791090015b80979934a45d625460d62"))
-            ( 5290, uint256S("000000000346e7d6b167a7aeccf6e521d9d78a7e0fe95f5b47d854b0bfc23654")),
-            1503127892, // * UNIX timestamp of last checkpoint block
-            98542,    // * total number of transactions between genesis and last checkpoint
+            (     0, uint256S("0x00000f6be3e151f9082a2b82c2916192a791090015b80979934a45d625460d62"))
+            (  5290, uint256S("0x000000000346e7d6b167a7aeccf6e521d9d78a7e0fe95f5b47d854b0bfc23654"))
+            (161000, uint256S("0x0000000000f55b8708a236b2c8057d8396023d5d56ec2d1b120af40e3073755e")),
+            1524243256, // * UNIX timestamp of last checkpoint block
+            268579,     // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
             1000        // * estimated number of transactions per day after checkpoint
         };
