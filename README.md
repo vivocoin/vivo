@@ -3,7 +3,7 @@ Vivo Core staging tree 0.12.1
 
 `master:` [![Build Status](https://travis-ci.org/vivocoin/vivo.svg?branch=master)](https://travis-ci.org/vivocoin/vivo) `v0.12.0.x:` [![Build Status](https://travis-ci.org/vivocoin/vivo.svg?branch=v0.12.0.x)](https://travis-ci.org/vivocoin/vivo/branches) `v0.12.1.x:` [![Build Status](https://travis-ci.org/vivocoin/vivo.svg?branch=v0.12.1.x)](https://travis-ci.org/vivocoin/vivo/branches)
 
-https://www.vivocrypto.com
+https://www.vivocoin.net
 
 
 What is Vivo?
