@@ -627,7 +627,7 @@ bool CMasternodeBroadcast::CheckOutpoint(int& nDos)
 		
 		if (chainActive.Height() < BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
 			if(coins.vout[vin.prevout.n].nValue != 1000 * COIN) {
-				LogPrint("masternode", "CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO should have 5000 VIVO, masternode=%s\n", vin.prevout.ToStringShort());
+				LogPrint("masternode", "CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO should have 1000 VIVO, masternode=%s\n", vin.prevout.ToStringShort());
 				return false;
 			}
 		} else {
