@@ -2136,10 +2136,21 @@ void RelayTransaction(const CTransaction& tx, const CDataStream& ss)
 }
 
 void RelayInv(CInv &inv, const int minProtoVersion) {
+    int nBestHeight=g_signals.GetHeight().get_value_or(0);	
+	LogPrintf(" bestheight:%d   ");
+	
     LOCK(cs_vNodes);
     BOOST_FOREACH(CNode* pnode, vNodes)
-        if(pnode->nVersion >= minProtoVersion)
-            pnode->PushInventory(inv);
+    	//zzzzzzz
+		if ( nBestHeight >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
+				if(pnode->nVersion >= minProtoVersion)
+					pnode->PushInventory(inv);
+					LogPrintf(" push inventory (after) \n  ");
+		} else {
+				if(pnode->nVersion >= 70206)
+					pnode->PushInventory(inv);
+					LogPrintf(" push inventory (before) \n  ");
+		}
 }
 
 void CNode::RecordBytesRecv(uint64_t bytes)
