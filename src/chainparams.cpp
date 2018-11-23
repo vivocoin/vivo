@@ -127,7 +127,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x35d3553e7bdc0568c8c37074cb7cc4bd930bd57ceff0799ddb0279487d3fd8df"));
 
 
-        vSeeds.push_back(CDNSSeedData("vivoseed.dynu.net", "vivoseed.dynu.net"));
+//        vSeeds.push_back(CDNSSeedData("vivoseed.dynu.net", "vivoseed.dynu.net"));
         vSeeds.push_back(CDNSSeedData("seeds.vivocoin.net", "seed.seeds.vivocoin.net"));
 
         // Vivo addresses start with 'V'
