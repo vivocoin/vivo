@@ -379,7 +379,7 @@ void CMasternode::UpdateLastPaid(const CBlockIndex *pindex, int nMaxBlocksToScan
             CBlock block;
             if(!ReadBlockFromDisk(block, BlockReading, Params().GetConsensus())) // shouldn't really happen
                 continue;
-
+			//zzzzzzzzzzzzz
             CAmount nMasternodePayment = GetMasternodePayment(BlockReading->nHeight, block.vtx[0].GetValueOut());
 
             BOOST_FOREACH(CTxOut txout, block.vtx[0].vout)
@@ -624,10 +624,18 @@ bool CMasternodeBroadcast::CheckOutpoint(int& nDos)
             LogPrint("masternode", "CMasternodeBroadcast::CheckOutpoint -- Failed to find Masternode UTXO, masternode=%s\n", vin.prevout.ToStringShort());
             return false;
         }
-        if(coins.vout[vin.prevout.n].nValue != 1000 * COIN) {
-            LogPrint("masternode", "CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO should have 1000 VIVO, masternode=%s\n", vin.prevout.ToStringShort());
-            return false;
-        }
+		
+		if (chainActive.Height() < BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
+			if(coins.vout[vin.prevout.n].nValue != 1000 * COIN) {
+				LogPrint("masternode", "CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO should have 1000 VIVO, masternode=%s\n", vin.prevout.ToStringShort());
+				return false;
+			}
+		} else {
+			if(coins.vout[vin.prevout.n].nValue != 5000 * COIN) {
+				LogPrint("masternode", "CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO should have 5000 VIVO, masternode=%s\n", vin.prevout.ToStringShort());
+				return false;
+			}
+		}		
         if(chainActive.Height() - coins.nHeight + 1 < Params().GetConsensus().nMasternodeMinimumConfirmations) {
             LogPrintf("CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO must have at least %d confirmations, masternode=%s\n",
                     Params().GetConsensus().nMasternodeMinimumConfirmations, vin.prevout.ToStringShort());
@@ -822,6 +830,8 @@ bool CMasternodePing::CheckAndUpdate(CMasternode* pmn, bool fFromNewBroadcast, i
         BlockMap::iterator mi = mapBlockIndex.find(blockHash);
         if ((*mi).second && (*mi).second->nHeight < chainActive.Height() - 24) {
             LogPrintf("CMasternodePing::CheckAndUpdate -- Masternode ping is invalid, block hash is too old: masternode=%s  blockHash=%s\n", vin.prevout.ToStringShort(), blockHash.ToString());
+           LogPrintf("ping result: mi height=%d  active chain height=%d\n", (*mi).second->nHeight, chainActive.Height() );
+			
             // nDos = 1;
             return false;
         }
