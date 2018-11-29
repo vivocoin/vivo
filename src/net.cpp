@@ -2145,11 +2145,11 @@ void RelayInv(CInv &inv, const int minProtoVersion) {
 		if ( nBestHeight >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
 				if(pnode->nVersion >= minProtoVersion)
 					pnode->PushInventory(inv);
-					LogPrintf(" push inventory (after) \n  ");
+					//LogPrintf(" push inventory (after) \n  ");
 		} else {
 				if(pnode->nVersion >= 70206)
 					pnode->PushInventory(inv);
-					LogPrintf(" push inventory (before) \n  ");
+					//LogPrintf(" push inventory (before) \n  ");
 		}
 }
 
