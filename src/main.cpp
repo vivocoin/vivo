@@ -5261,15 +5261,14 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             Misbehaving(pfrom->GetId(), 1);
             return false;
         }
-
+		
         int64_t nTime;
         CAddress addrMe;
         CAddress addrFrom;
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-        //if (pfrom->nVersion < MIN_PEER_PROTO_VERSION)
-			
-        if ((pfrom->nVersion < 70209 && chainActive.Tip()->nHeight >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE ) || (pfrom->nVersion < 70206 && chainActive.Tip()->nHeight < BLOCKS_AFTER_5000_COLLATERAL_CHANGE))
+        if (pfrom->nVersion < MIN_PEER_PROTO_VERSION)
+		//if ((pfrom->nVersion < 70209 && chainActive.Tip()->nHeight >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE ) || (pfrom->nVersion < 70206 && chainActive.Tip()->nHeight < BLOCKS_AFTER_5000_COLLATERAL_CHANGE))
         {
             // disconnect from peers older than this proto version
 			LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->nVersion);

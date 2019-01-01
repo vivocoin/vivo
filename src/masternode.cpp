@@ -625,17 +625,17 @@ bool CMasternodeBroadcast::CheckOutpoint(int& nDos)
             return false;
         }
 		
-		if (chainActive.Height() < BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
-			if(coins.vout[vin.prevout.n].nValue != 1000 * COIN) {
-				LogPrint("masternode", "CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO should have 1000 VIVO, masternode=%s\n", vin.prevout.ToStringShort());
-				return false;
-			}
-		} else {
+		//if (chainActive.Height() < BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
+		//	if(coins.vout[vin.prevout.n].nValue != 1000 * COIN) {
+		//		LogPrint("masternode", "CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO should have 1000 VIVO, masternode=%s\n", vin.prevout.ToStringShort());
+		//		return false;
+		//	}
+		//} else {
 			if(coins.vout[vin.prevout.n].nValue != 5000 * COIN) {
 				LogPrint("masternode", "CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO should have 5000 VIVO, masternode=%s\n", vin.prevout.ToStringShort());
 				return false;
 			}
-		}		
+		//}		
         if(chainActive.Height() - coins.nHeight + 1 < Params().GetConsensus().nMasternodeMinimumConfirmations) {
             LogPrintf("CMasternodeBroadcast::CheckOutpoint -- Masternode UTXO must have at least %d confirmations, masternode=%s\n",
                     Params().GetConsensus().nMasternodeMinimumConfirmations, vin.prevout.ToStringShort());

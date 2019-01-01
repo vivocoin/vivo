@@ -1057,7 +1057,7 @@ void CMasternodeMan::CheckSameAddr()
         BOOST_FOREACH(CMasternode* pmn, vSortedByAddr) {
 			
            // Ban if is out of inflation control	
-             if (pmn != NULL && chainActive.Height() >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {	
+             //if (pmn != NULL && chainActive.Height() >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {	
                 std::vector<COutput> found1kouts;	
                 pwalletMain->AvailableCoins(found1kouts, true, NULL, false, ONLY_1000);	
                 //check all outputs for the txid hash	
@@ -1068,7 +1068,7 @@ void CMasternodeMan::CheckSameAddr()
                         vBan.push_back(pmn);	
                     }	
                 }	
-            }
+            //}
 
 			
 			

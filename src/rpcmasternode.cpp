@@ -370,14 +370,14 @@ UniValue masternode(const UniValue& params, bool fHelp)
 
     if (strCommand == "outputs") {
         // Find possible candidates
-        std::vector<COutput> vPossibleCoins;
+        //std::vector<COutput> vPossibleCoins;
 		std::vector<COutput> vPossibleCoinsv2;
 
-        pwalletMain->AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_1000);
+        //pwalletMain->AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_1000);
 
-        if (chainActive.Height() < BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {	
-            pwalletMain->AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_1000);	
-        }	
+        //if (chainActive.Height() < BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {	
+        //    pwalletMain->AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_1000);	
+        //}	
 
         pwalletMain->AvailableCoins(vPossibleCoinsv2, true, NULL, false, ONLY_5000);	
 
@@ -387,10 +387,10 @@ UniValue masternode(const UniValue& params, bool fHelp)
             obj.push_back(Pair(out.tx->GetHash().ToString(), strprintf("%d", out.i)));	
         }	
 
-        BOOST_FOREACH(COutput& out, vPossibleCoins) {	        
-            obj.push_back(Pair("Warning", strprintf("The output in the line below will not be useable after block %d, 5000 will be needed for collateral:", BLOCKS_AFTER_5000_COLLATERAL_CHANGE)));	
-            obj.push_back(Pair(out.tx->GetHash().ToString(), strprintf("%d", out.i)));
-		}
+        //BOOST_FOREACH(COutput& out, vPossibleCoins) {	        
+         //   obj.push_back(Pair("Warning", strprintf("The output in the line below will not be useable after block %d, 5000 will be needed for collateral:", BLOCKS_AFTER_5000_COLLATERAL_CHANGE)));	
+         //   obj.push_back(Pair(out.tx->GetHash().ToString(), strprintf("%d", out.i)));
+		//}
 
         return obj;
 

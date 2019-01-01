@@ -2142,15 +2142,15 @@ void RelayInv(CInv &inv, const int minProtoVersion) {
     LOCK(cs_vNodes);
     BOOST_FOREACH(CNode* pnode, vNodes)
     	//zzzzzzz
-		if ( nBestHeight >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
+		//if ( nBestHeight >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
 				if(pnode->nVersion >= minProtoVersion)
 					pnode->PushInventory(inv);
 					//LogPrintf(" push inventory (after) \n  ");
-		} else {
-				if(pnode->nVersion >= 70206)
-					pnode->PushInventory(inv);
-					//LogPrintf(" push inventory (before) \n  ");
-		}
+		//} else {
+		//		if(pnode->nVersion >= 70206)
+		//			pnode->PushInventory(inv);
+		//			//LogPrintf(" push inventory (before) \n  ");
+		//}
 }
 
 void CNode::RecordBytesRecv(uint64_t bytes)
