@@ -2136,7 +2136,7 @@ void RelayTransaction(const CTransaction& tx, const CDataStream& ss)
 }
 
 void RelayInv(CInv &inv, const int minProtoVersion) {
-    int nBestHeight=g_signals.GetHeight().get_value_or(0);	
+    // int nBestHeight=g_signals.GetHeight().get_value_or(0);	
 	//LogPrintf(" bestheight:%d   ", nBestHeight );
 	
     LOCK(cs_vNodes);

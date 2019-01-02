@@ -2705,7 +2705,7 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     std::vector<COutput> vPossibleCoins;
     std::vector<COutput> vPossibleCoins5k;
     if (chainActive.Height() < BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
-        AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_1000);	
+        //AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_1000);	
         AvailableCoins(vPossibleCoins5k, true, NULL, false, ONLY_5000);	
     } else {	
         AvailableCoins(vPossibleCoins, true, NULL, false, ONLY_5000);	
@@ -2722,9 +2722,9 @@ bool CWallet::GetMasternodeVinAndKeys(CTxIn& txinRet, CPubKey& pubKeyRet, CKey& 
     uint256 txHash = uint256S(strTxHash);
     int nOutputIndex = atoi(strOutputIndex.c_str());
 
-    BOOST_FOREACH(COutput& out, vPossibleCoins)
-        if(out.tx->GetHash() == txHash && out.i == nOutputIndex) // found it!
-            return GetVinAndKeysFromOutput(out, txinRet, pubKeyRet, keyRet);
+    //BOOST_FOREACH(COutput& out, vPossibleCoins)
+     //   if(out.tx->GetHash() == txHash && out.i == nOutputIndex) // found it!
+     //      return GetVinAndKeysFromOutput(out, txinRet, pubKeyRet, keyRet);
 
     BOOST_FOREACH(COutput& out, vPossibleCoins5k)
         if(out.tx->GetHash() == txHash && out.i == nOutputIndex) // found it!
