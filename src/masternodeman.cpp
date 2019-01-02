@@ -1053,7 +1053,8 @@ void CMasternodeMan::CheckSameAddr()
         }
 
         sort(vSortedByAddr.begin(), vSortedByAddr.end(), CompareByAddr());
-		BOOST_FOREACH(CMasternode* pmn, vSortedByAddr) {
+
+        BOOST_FOREACH(CMasternode* pmn, vSortedByAddr) {
             // check only (pre)enabled masternodes
             if(!pmn->IsEnabled() && !pmn->IsPreEnabled()) continue;
             // initial step
