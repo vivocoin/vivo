@@ -5261,26 +5261,21 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             Misbehaving(pfrom->GetId(), 1);
             return false;
         }
-		
+
         int64_t nTime;
         CAddress addrMe;
         CAddress addrFrom;
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
         if (pfrom->nVersion < MIN_PEER_PROTO_VERSION)
-		//if ((pfrom->nVersion < 70209 && chainActive.Tip()->nHeight >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE ) || (pfrom->nVersion < 70206 && chainActive.Tip()->nHeight < BLOCKS_AFTER_5000_COLLATERAL_CHANGE))
         {
             // disconnect from peers older than this proto version
-			LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->nVersion);
+            LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->nVersion);
             pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
                                strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
             pfrom->fDisconnect = true;
             return false;
-        } else {
-			
-			LogPrintf("peer=%d using NOT obsolete - is version %i; ALLOWING connecting\n", pfrom->id, pfrom->nVersion);	
-			LogPrintf("height is: %d\n", chainActive.Tip()->nHeight);
-		}
+        }
 
         if (pfrom->nVersion == 10300)
             pfrom->nVersion = 300;

@@ -11,8 +11,6 @@
 #include "masternodeman.h"
 #include "netfulfilledman.h"
 #include "util.h"
-#include "init.h"
-
 
 /** Masternode manager */
 CMasternodeMan mnodeman;
