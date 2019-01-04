@@ -270,5 +270,5 @@ template <typename Callable> void TraceThread(const char* name,  Callable func)
         throw;
     }
 }
-#define BLOCKS_AFTER_5000_COLLATERAL_CHANGE 330897
+
 #endif // BITCOIN_UTIL_H

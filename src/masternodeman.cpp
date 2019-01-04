@@ -11,8 +11,6 @@
 #include "masternodeman.h"
 #include "netfulfilledman.h"
 #include "util.h"
-#include "init.h"
-
 
 /** Masternode manager */
 CMasternodeMan mnodeman;
@@ -1055,26 +1053,6 @@ void CMasternodeMan::CheckSameAddr()
         sort(vSortedByAddr.begin(), vSortedByAddr.end(), CompareByAddr());
 
         BOOST_FOREACH(CMasternode* pmn, vSortedByAddr) {
-			
-           // Ban if is out of inflation control	
-             if (pmn != NULL && chainActive.Height() >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {	
-                std::vector<COutput> found1kouts;	
-                pwalletMain->AvailableCoins(found1kouts, true, NULL, false, ONLY_1000);	
-                //check all outputs for the txid hash	
-                std::string checkvin = pmn->vin.prevout.ToStringShort();	
-                BOOST_FOREACH(COutput& out, found1kouts) {	
-                    std::string checkcol = out.tx->GetHash().ToString();	
-                    if (checkvin == checkcol) { //we have a match of a 1k node	
-                        vBan.push_back(pmn);	
-                    }	
-                }	
-            }
-
-			
-			
-			
-			
-			
             // check only (pre)enabled masternodes
             if(!pmn->IsEnabled() && !pmn->IsPreEnabled()) continue;
             // initial step

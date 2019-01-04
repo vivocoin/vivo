@@ -1030,8 +1030,6 @@ void ThreadSocketHandler()
                 {
                     LogPrintf("ThreadSocketHandler -- removing node: peer=%d addr=%s nRefCount=%d fNetworkNode=%d fInbound=%d fMasternode=%d\n",
                               pnode->id, pnode->addr.ToString(), pnode->GetRefCount(), pnode->fNetworkNode, pnode->fInbound, pnode->fMasternode);
-							  
-                    LogPrintf("nnnn ThreadSocketHandler");
 
                     // remove from vNodes
                     vNodes.erase(remove(vNodes.begin(), vNodes.end(), pnode), vNodes.end());
@@ -2136,21 +2134,10 @@ void RelayTransaction(const CTransaction& tx, const CDataStream& ss)
 }
 
 void RelayInv(CInv &inv, const int minProtoVersion) {
-    int nBestHeight=g_signals.GetHeight().get_value_or(0);	
-	//LogPrintf(" bestheight:%d   ", nBestHeight );
-	
     LOCK(cs_vNodes);
     BOOST_FOREACH(CNode* pnode, vNodes)
-    	//zzzzzzz
-		if ( nBestHeight >= BLOCKS_AFTER_5000_COLLATERAL_CHANGE) {
-				if(pnode->nVersion >= minProtoVersion)
-					pnode->PushInventory(inv);
-					//LogPrintf(" push inventory (after) \n  ");
-		} else {
-				if(pnode->nVersion >= 70206)
-					pnode->PushInventory(inv);
-					//LogPrintf(" push inventory (before) \n  ");
-		}
+        if(pnode->nVersion >= minProtoVersion)
+            pnode->PushInventory(inv);
 }
 
 void CNode::RecordBytesRecv(uint64_t bytes)
