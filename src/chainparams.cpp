@@ -133,6 +133,7 @@ public:
 
         vSeeds.push_back(CDNSSeedData("seed.vivocoinseed.dynu.net", "seednode.vivocoinseed.dynu.net"));
         vSeeds.push_back(CDNSSeedData("seeds.vivocoin.net", "seed.seeds.vivocoin.net"));
+	
 
         // Vivo addresses start with 'V'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,70);
@@ -169,11 +170,19 @@ public:
             (     0, uint256S("0x00000f6be3e151f9082a2b82c2916192a791090015b80979934a45d625460d62"))
             (  5290, uint256S("0x000000000346e7d6b167a7aeccf6e521d9d78a7e0fe95f5b47d854b0bfc23654"))
             (161000, uint256S("0x0000000000f55b8708a236b2c8057d8396023d5d56ec2d1b120af40e3073755e"))
-            (304500, uint256S("0x000000001791f3f7d83ddb62333dbeeedcb61403b8931cafe66835edfad20090")),
-            1542999374, // * UNIX timestamp of last checkpoint block
-            600000,     // * total number of transactions between genesis and last checkpoint
+            (304500, uint256S("0x000000001791f3f7d83ddb62333dbeeedcb61403b8931cafe66835edfad20090"))
+			(305000, uint256S("000000000fe61fa890e38551a6b09c885cd654f41929826f5c949c737a62830d"))// 1543060261
+			(305500 uint256S("000000001357f8392867ce9194e6bf27ab36cf720ca321090a9ba3397852a231"))// 1543125036,
+			(306000 uint256S("000000000a0ceb4c9681b411a39c922bc57717aefe3e621cceb3ff5022e831b4"))// 1543188058
+			(306500  uint256S("0000000001473705e8838c283bc18bcbecb28d4de047ce7810f89dc15c8f0b85"))// 1543251527
+			(307000  uint256S("000000000525621400e9d10a79b02237194e34667b73898cd5f9fc99ea58ec7a"))// 1543314442
+			(307500 uint256S("0000000021ba9398d0458721e41a362396c31abcb751cf4520ce973b5f2d96d6"))// 1543378351
+			(308000 uint256S("0000000018ee47a3c93296309ce207724868232706f59a6937362581476ce462")),// 1543442279
+			
+            1543442279, // * UNIX timestamp of last checkpoint block
+            5000,     // * total number of transactions between genesis and last checkpoint
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            1000        // * estimated number of transactions per day after checkpoint
+            500        // * estimated number of transactions per day after checkpoint
         };
     }
 };
