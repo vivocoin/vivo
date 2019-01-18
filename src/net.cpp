@@ -1403,8 +1403,8 @@ void MapPort(bool)
 void ThreadDNSAddressSeed()
 {
     // goal: only query DNS seeds if address need is acute
-//SMRK
-/*
+
+
     if ((addrman.size() > 0) &&
         (!GetBoolArg("-forcednsseed", DEFAULT_FORCEDNSSEED))) {
         MilliSleep(11 * 1000);
@@ -1412,11 +1412,11 @@ void ThreadDNSAddressSeed()
         LOCK(cs_vNodes);
         if (vNodes.size() >= 2) {
             LogPrintf("P2P peers available. Skipped DNS seeding.\n");
-            return;
+            //return;
         }
 		
     }
-*/
+
     const vector<CDNSSeedData> &vSeeds = Params().DNSSeeds();
     int found = 0;
 
