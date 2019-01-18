@@ -1407,11 +1407,13 @@ void ThreadDNSAddressSeed()
         (!GetBoolArg("-forcednsseed", DEFAULT_FORCEDNSSEED))) {
         MilliSleep(11 * 1000);
 
+		/*
         LOCK(cs_vNodes);
         if (vNodes.size() >= 2) {
             LogPrintf("P2P peers available. Skipped DNS seeding.\n");
             return;
         }
+		*/
     }
 
     const vector<CDNSSeedData> &vSeeds = Params().DNSSeeds();
@@ -1440,7 +1442,7 @@ void ThreadDNSAddressSeed()
         }
     }
 
-    LogPrintf("%d addresses found from DNS seeds\n", found);
+    LogPrintf("%d "\n", found);
 }
 
 
