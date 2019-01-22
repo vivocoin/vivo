@@ -130,10 +130,9 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x00000f6be3e151f9082a2b82c2916192a791090015b80979934a45d625460d62"));
         assert(genesis.hashMerkleRoot == uint256S("0x35d3553e7bdc0568c8c37074cb7cc4bd930bd57ceff0799ddb0279487d3fd8df"));
 
-        vSeeds.push_back(CDNSSeedData("seed.vivocoinseed.dynu.net", "seed.vivocoinseed.dynu.net"));
-        vSeeds.push_back(CDNSSeedData("seednode.vivocoinseed.dynu.net", "seednode.vivocoinseed.dynu.net"));
         vSeeds.push_back(CDNSSeedData("seeds.vivocoin.net", "seeds.vivocoin.net"));
         vSeeds.push_back(CDNSSeedData("seed.seeds.vivocoin.net", "seed.seeds.vivocoin.net"));
+        vSeeds.push_back(CDNSSeedData("seed.vivocoinseed.dynu.net", "seed.vivocoinseed.dynu.net"));
         vSeeds.push_back(CDNSSeedData("vivoseed.hashcube.com", "vivoseed.hashcube.com"));		
         vSeeds.push_back(CDNSSeedData("vivoseed.mm.my", "vivoseed.mm.my"));		
 
