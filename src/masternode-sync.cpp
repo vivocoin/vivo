@@ -487,8 +487,8 @@ void CMasternodeSync::ProcessTick()
                 netfulfilledman.AddFulfilledRequest(pnode->addr, "governance-sync");
 
                 if (pnode->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) continue;
-				if(pfrom->nVersion == 70209) continue;	
-				if(pfrom->nVersion == 70208) continue;	
+				if(pnode->nVersion == 70209) continue;	
+				if(pnode->nVersion == 70208) continue;	
 
                 nRequestedMasternodeAttempt++;
 
