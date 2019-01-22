@@ -487,6 +487,9 @@ void CMasternodeSync::ProcessTick()
                 netfulfilledman.AddFulfilledRequest(pnode->addr, "governance-sync");
 
                 if (pnode->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) continue;
+				if(pfrom->nVersion == 70209) continue;	
+				if(pfrom->nVersion == 70208) continue;	
+
                 nRequestedMasternodeAttempt++;
 
                 SendGovernanceSyncRequest(pnode);
@@ -502,6 +505,9 @@ void CMasternodeSync::ProcessTick()
 
 void CMasternodeSync::SendGovernanceSyncRequest(CNode* pnode)
 {
+    if(pfrom->nVersion != 70209)	
+	if(pfrom->nVersion != 70208)	
+
     if(pnode->nVersion >= GOVERNANCE_FILTER_PROTO_VERSION) {
         CBloomFilter filter;
         filter.clear();

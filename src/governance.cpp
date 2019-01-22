@@ -108,7 +108,9 @@ void CGovernanceManager::ProcessMessage(CNode* pfrom, std::string& strCommand, C
     if(!masternodeSync.IsBlockchainSynced()) return;
 
     if(pfrom->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) return;
-
+    if(pfrom->nVersion == 70209) return;	
+    if(pfrom->nVersion == 70208) return;	
+	
     // ANOTHER USER IS ASKING US TO HELP THEM SYNC GOVERNANCE OBJECT DATA
     if (strCommand == NetMsgType::MNGOVERNANCESYNC)
     {
@@ -123,6 +125,9 @@ void CGovernanceManager::ProcessMessage(CNode* pfrom, std::string& strCommand, C
 
         vRecv >> nProp;
 
+		
+	    if(pfrom->nVersion != 70209)	
+		if(pfrom->nVersion != 70208)	
         if(pfrom->nVersion >= GOVERNANCE_FILTER_PROTO_VERSION) {
             vRecv >> filter;
             filter.UpdateEmptyFull();
@@ -1156,6 +1161,9 @@ int CGovernanceManager::RequestGovernanceObjectVotes(const std::vector<CNode*>& 
             if(pnode->fMasternode || (fMasterNode && pnode->fInbound)) continue;
             // only use up to date peers
             if(pnode->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) continue;
+			if(pfrom->nVersion == 70209) continue;	
+			if(pfrom->nVersion == 70208) continue;	
+			
             // stop early to prevent setAskFor overflow
             size_t nProjectedSize = pnode->setAskFor.size() + nProjectedVotes;
             if(nProjectedSize > SETASKFOR_MAX_SZ/2) continue;
