@@ -1161,8 +1161,8 @@ int CGovernanceManager::RequestGovernanceObjectVotes(const std::vector<CNode*>& 
             if(pnode->fMasternode || (fMasterNode && pnode->fInbound)) continue;
             // only use up to date peers
             if(pnode->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) continue;
-			if(pfrom->nVersion == 70209) continue;	
-			if(pfrom->nVersion == 70208) continue;	
+			if(pnode->nVersion == 70209) continue;	
+			if(pnode->nVersion == 70208) continue;	
 			
             // stop early to prevent setAskFor overflow
             size_t nProjectedSize = pnode->setAskFor.size() + nProjectedVotes;
