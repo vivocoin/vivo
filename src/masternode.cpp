@@ -282,6 +282,7 @@ void CMasternode::Check(bool fForce)
     }
 }
 
+
 bool CMasternode::IsValidNetAddr()
 {
     return IsValidNetAddr(addr);
@@ -292,7 +293,7 @@ bool CMasternode::IsValidNetAddr(CService addrIn)
     // TODO: regtest is fine with any addresses for now,
     // should probably be a bit smarter if one day we start to implement tests for this
     return Params().NetworkIDString() == CBaseChainParams::REGTEST ||
-            (addrIn.IsIPv4() && IsReachable(addrIn) && addrIn.IsRoutable());
+            (IsReachable(addrIn) && addrIn.IsRoutable());
 }
 
 masternode_info_t CMasternode::GetInfo()
@@ -428,7 +429,7 @@ bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMast
     }
 
     CService service = CService(strService);
-    int mainnetDefaultPort = Params(CBaseChainParams::MAIN).GetDefaultPort();
+    /*int mainnetDefaultPort = Params(CBaseChainParams::MAIN).GetDefaultPort();
     if(Params().NetworkIDString() == CBaseChainParams::MAIN) {
         if(service.GetPort() != mainnetDefaultPort) {
             strErrorRet = strprintf("Invalid port %u for masternode %s, only %d is supported on mainnet.", service.GetPort(), strService, mainnetDefaultPort);
@@ -440,7 +441,7 @@ bool CMasternodeBroadcast::Create(std::string strService, std::string strKeyMast
         LogPrintf("CMasternodeBroadcast::Create -- %s\n", strErrorRet);
         return false;
     }
-
+	*/
     return Create(txin, CService(strService), keyCollateralAddressNew, pubKeyCollateralAddressNew, keyMasternodeNew, pubKeyMasternodeNew, strErrorRet, mnbRet);
 }
 
@@ -536,10 +537,10 @@ bool CMasternodeBroadcast::SimpleCheck(int& nDos)
     }
 
     int mainnetDefaultPort = Params(CBaseChainParams::MAIN).GetDefaultPort();
-    if(Params().NetworkIDString() == CBaseChainParams::MAIN) {
+    /*if(Params().NetworkIDString() == CBaseChainParams::MAIN) {
         if(addr.GetPort() != mainnetDefaultPort) return false;
     } else if(addr.GetPort() == mainnetDefaultPort) return false;
-
+	*/
     return true;
 }
 
