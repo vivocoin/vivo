@@ -2136,7 +2136,8 @@ void RelayTransaction(const CTransaction& tx, const CDataStream& ss)
 void RelayInv(CInv &inv, const int minProtoVersion) {
     LOCK(cs_vNodes);
     BOOST_FOREACH(CNode* pnode, vNodes)
-        if(pnode->nVersion >= minProtoVersion)
+	
+        if(pnode->nVersion >= 70210)
             pnode->PushInventory(inv);
 }
 
