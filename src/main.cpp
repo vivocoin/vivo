@@ -5279,8 +5279,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         }
 	
 	//zzzremove
-	LogPrintf("------------- peer=%d using strSubver %i\n", pfrom->id, pfrom->strSubVer);
-	 
+	LogPrintf("------------- peer=%d using strSubver <<%i>> height %d\n", pfrom->id, pfrom->strSubVer, chainActive.Height());
+	//if (chainActive.Height() > ) StartShutdown(); 
 
         if (pfrom->nVersion == 10300)
             pfrom->nVersion = 300;
@@ -5376,11 +5376,17 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (fLogIPs)
             remoteAddr = ", peeraddr=" + pfrom->addr.ToString();
 
-        LogPrintf("receive version message: %s: version %d, blocks=%d, us=%s, peer=%d%s\n",
+        LogPrintf("receive version message: <<%s>>: version %d, blocks=%d, us=%s, peer=%d%s\n",
                   pfrom->cleanSubVer, pfrom->nVersion,
                   pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
                   remoteAddr);
-
+				  
+				  
+		if (pfrom->cleanSubVer.contains("Vivo Core:0.12.1.14"))	
+			LogPrintf("+++++++ Will be allowed");
+		else
+			LogPrintf("+++++++ BAD Will not be allowed");
+		
         int64_t nTimeOffset = nTime - GetTime();
         pfrom->nTimeOffset = nTimeOffset;
         AddTimeData(pfrom->addr, nTimeOffset);
