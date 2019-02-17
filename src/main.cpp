@@ -5277,6 +5277,10 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             pfrom->fDisconnect = true;
             return false;
         }
+	
+	//zzzremove
+	LogPrintf("------------- peer=%d using strSubver %i\n", pfrom->id, pfrom->strSubVer);
+	 
 
         if (pfrom->nVersion == 10300)
             pfrom->nVersion = 300;
