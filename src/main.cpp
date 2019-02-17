@@ -5381,8 +5381,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                   pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
                   remoteAddr);
 				  
-				  
-		if (pfrom->cleanSubVer.contains("Vivo Core:0.12.1.14"))	
+		//zzzzz remove		  
+		string searchVersion ("Vivo Core:0.12.1.14");
+		if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			LogPrintf("+++++++ Will be allowed");
 		else
 			LogPrintf("+++++++ BAD Will not be allowed");
