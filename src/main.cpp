@@ -5268,30 +5268,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
 
-		
-		
-        string remoteAddrx;
-        remoteAddrx = ", peeraddr=" + pfrom->addr.ToString();
-		
-        LogPrintf("!!!!!!! Con Attempt <<%s>>: version %d, blocks=%d, us=%s, peer=%d%s\n",
-                  pfrom->cleanSubVer, pfrom->nVersion,
-                  pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
-                  remoteAddrx);
-				  
-		//zzzzz remove		  
-		
-	    if (chainActive.Height() > 362510) {
-			LogPrintf("===================xxxxxxxxxx===========================\n");
-			string searchVersion ("Vivo Core:0.12.1.14");
-			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
-				LogPrintf("+++++++ Will be allowed\n");
-			else
-				LogPrintf("+++++++ BAD Will not be allowed\n");
- 		
-		}
-		
-		
-				
+//zzzzzz				
 	    if (chainActive.Height() > 362535) {
 			LogPrintf("ZZZZZZZZZZZZ GET NEW VERSION- UPGRADE VIVO\n");
 			StartShutdown(); 		
@@ -5320,6 +5297,33 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             vRecv >> LIMITED_STRING(pfrom->strSubVer, MAX_SUBVERSION_LENGTH);
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
         }
+
+
+		
+        string remoteAddrx;
+        remoteAddrx = ", peeraddr=" + pfrom->addr.ToString();
+		
+        LogPrintf("!!!!!!! Con Attempt <<%s>>: version %d, blocks=%d, us=%s, peer=%d%s\n",
+                  pfrom->cleanSubVer, pfrom->nVersion,
+                  pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
+                  remoteAddrx);
+				  
+
+		//zzzzz remove		  
+		
+	    if (chainActive.Height() > 362510) {
+			LogPrintf("===================xxxxxxxxxx===========================\n");
+			string searchVersion ("Vivo Core:0.12.1.14");
+			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
+				LogPrintf("+++++++ Will be allowed\n");
+			else
+				LogPrintf("+++++++ BAD Will not be allowed\n");
+ 		
+		}
+
+		
+		
+		
         if (!vRecv.empty())
             vRecv >> pfrom->nStartingHeight;
         if (!vRecv.empty())
