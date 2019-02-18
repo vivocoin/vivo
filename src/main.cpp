@@ -5270,11 +5270,13 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
 		
 		
+        string remoteAddr;
+        remoteAddrx = ", peeraddr=" + pfrom->addr.ToString();
 		
         LogPrintf("!!!!!!! Con Attempt <<%s>>: version %d, blocks=%d, us=%s, peer=%d%s\n",
                   pfrom->cleanSubVer, pfrom->nVersion,
                   pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
-                  remoteAddr);
+                  remoteAddrx);
 				  
 		//zzzzz remove		  
 		
