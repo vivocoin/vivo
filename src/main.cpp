@@ -5269,7 +5269,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
 
 //zzzzzz				
-	    if (chainActive.Height() > 362535) {
+	    if (chainActive.Height() > 362735) {
 			LogPrintf("ZZZZZZZZZZZZ GET NEW VERSION- UPGRADE VIVO\n");
 			StartShutdown(); 		
 		}
@@ -5287,7 +5287,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 	
 	//zzzremove
 	LogPrintf("------------- peer=%d using strSubver <<%i>> height %d\n", pfrom->id, pfrom->strSubVer, chainActive.Height());
-	//if (chainActive.Height() > ) StartShutdown(); 
 
         if (pfrom->nVersion == 10300)
             pfrom->nVersion = 300;
@@ -5298,7 +5297,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
         }
 
-
+		//zzzzz remove		  
 		
         string remoteAddrx;
         remoteAddrx = ", peeraddr=" + pfrom->addr.ToString();
@@ -5313,16 +5312,16 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 		
 	    if (chainActive.Height() > 362510) {
 			LogPrintf("===================xxxxxxxxxx===========================\n");
-			string searchVersion ("Vivo Core:0.12.1.14");
+			string searchVersion ("Vivo Core:0.12.1.12");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
-				LogPrintf("+++++++ Will be allowed\n");
-			else
-				LogPrintf("+++++++ BAD Will not be allowed\n");
- 		
+				LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->cleanSubVer);
+				pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
+								   strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
+				pfrom->fDisconnect = true;
+				return false;
+			}
 		}
 
-		
-		
 		
         if (!vRecv.empty())
             vRecv >> pfrom->nStartingHeight;
@@ -5410,7 +5409,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (fLogIPs)
             remoteAddr = ", peeraddr=" + pfrom->addr.ToString();
 
-        LogPrintf("receive version message: <<%s>>: version %d, blocks=%d, us=%s, peer=%d%s\n",
+        LogPrintf("receive version message: %s: version %d, blocks=%d, us=%s, peer=%d%s\n",
                   pfrom->cleanSubVer, pfrom->nVersion,
                   pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
                   remoteAddr);
