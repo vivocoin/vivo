@@ -5267,9 +5267,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         CAddress addrFrom;
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-
+#define SIX_WEEKS_SINCE_BLOCK 390251		
 //zzzzzz				
-	    if (chainActive.Height() > 380000) {
+	    if (chainActive.Height() > SIX_WEEKS_SINCE_BLOCK) {
 			LogPrintf("ZZZZZZZZZZZZ GET NEW VERSION- UPGRADE VIVO\n");
 			StartShutdown(); 		
 		}
@@ -5309,8 +5309,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 				  
 
 		//zzzzz remove		  
-		
-	    if (chainActive.Height() > 362837) {
+#define TWO_WEEKS_SINCE_BLOCK 372331		
+	    if (chainActive.Height() > TWO_WEEKS_SINCE_BLOCK) {
 			LogPrintf("===================xxxxxxxxxx1===========================\n");
 			string searchVersion ("Vivo Core:0.12.1.12");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
@@ -5322,9 +5322,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 				return false;
 			}
 		}
-
-	    if (chainActive.Height() > 362937) {
-			LogPrintf("===================xxxxxxxxxx2===========================\n");
+#define FOUR_WEEKS_SINCE_BLOCK 381291		
+	    if (chainActive.Height() > FOUR_WEEKS_SINCE_BLOCK) {
+			LogPrintf("===================xxxxxxxxxx===========================\n");
 			string searchVersion ("Vivo Core:0.12.1.14");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			{
