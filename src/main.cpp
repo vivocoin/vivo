@@ -5310,8 +5310,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
 		//zzzzz remove		  
 		
-	    if (chainActive.Height() > 362510) {
-			LogPrintf("===================xxxxxxxxxx===========================\n");
+	    if (chainActive.Height() > 362837) {
+			LogPrintf("===================xxxxxxxxxx1===========================\n");
 			string searchVersion ("Vivo Core:0.12.1.12");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			{
@@ -5323,8 +5323,8 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 			}
 		}
 
-	    if (chainActive.Height() > 362510) {
-			LogPrintf("===================xxxxxxxxxx===========================\n");
+	    if (chainActive.Height() > 362937) {
+			LogPrintf("===================xxxxxxxxxx2===========================\n");
 			string searchVersion ("Vivo Core:0.12.1.14");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			{
