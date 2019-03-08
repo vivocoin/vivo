@@ -5278,7 +5278,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         if (pfrom->nVersion < 70210)
         {
             // disconnect from peers older than this proto version
-            LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->nVersion);
+            LogPrintf("peer=%d using obsolete version %i; disconnecting addr=%s <<%i>>\n", pfrom->id, pfrom->nVersion, pfrom->addr.ToString(), pfrom->strSubVer);
             pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
                                strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
             pfrom->fDisconnect = true;
@@ -5302,10 +5302,10 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         string remoteAddrx;
         remoteAddrx = ", peeraddr=" + pfrom->addr.ToString();
 		
-        LogPrintf("!!!!!!! Con Attempt <<%s>>: version %d, blocks=%d, us=%s, peer=%d%s\n",
+        LogPrintf("!!!!!!! Con Attempt <<%s>>: version %d, blocks=%d, us=%s, peer=%d%s ourHeight=%d\n",
                   pfrom->cleanSubVer, pfrom->nVersion,
                   pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
-                  remoteAddrx);
+                  remoteAddrx, chainActive.Height());
 				  
 
 		//zzzzz remove		  
@@ -5315,7 +5315,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 			string searchVersion ("Vivo Core:0.12.1.12");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			{
-				LogPrintf("*******************  peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->cleanSubVer);
+				LogPrintf("*******************  peer=%d using obsolete version %i %s; disconnecting\n", pfrom->id, pfrom->cleanSubVer, remoteAddrx);
 				pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
 								   strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
 				pfrom->fDisconnect = true;
@@ -5328,7 +5328,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 			string searchVersion ("Vivo Core:0.12.1.14");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			{
-				LogPrintf("*******************  peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->cleanSubVer);
+				LogPrintf("*******************  peer=%d using obsolete version %i %s; disconnecting\n", pfrom->id, pfrom->cleanSubVer, remoteAddrx);
 				pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
 								   strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
 				pfrom->fDisconnect = true;
