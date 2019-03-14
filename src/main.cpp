@@ -5267,8 +5267,12 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         CAddress addrFrom;
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-#define SIX_WEEKS_SINCE_BLOCK 390251		
-//zzzzzz				
+
+// Current378114
+#define TWO_WEEKS_SINCE_BLOCK 387074
+#define FOUR_WEEKS_SINCE_BLOCK 396034
+#define SIX_WEEKS_SINCE_BLOCK 404994
+
 	    if (chainActive.Height() > SIX_WEEKS_SINCE_BLOCK) {
 			LogPrintf("ZZZZZZZZZZZZ GET NEW VERSION- UPGRADE VIVO\n");
 			StartShutdown(); 		
@@ -5297,7 +5301,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
         }
 
-		//zzzzz remove		  
 		
         string remoteAddrx;
         remoteAddrx = ", peeraddr=" + pfrom->addr.ToString();
@@ -5308,8 +5311,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                   remoteAddrx, chainActive.Height());
 				  
 
-		//zzzzz remove		  
-#define TWO_WEEKS_SINCE_BLOCK 372331		
+//MODS
 	    if (chainActive.Height() > TWO_WEEKS_SINCE_BLOCK) {
 			LogPrintf("===================xxxxxxxxxx1===========================\n");
 			string searchVersion ("Vivo Core:0.12.1.12");
@@ -5322,7 +5324,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 				return false;
 			}
 		}
-#define FOUR_WEEKS_SINCE_BLOCK 381291		
+
 	    if (chainActive.Height() > FOUR_WEEKS_SINCE_BLOCK) {
 			LogPrintf("===================xxxxxxxxxx===========================\n");
 			string searchVersion ("Vivo Core:0.12.1.14");
@@ -5335,7 +5337,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 				return false;
 			}
 		}
-		
+//END MODS		
 		
 		
         if (!vRecv.empty())
