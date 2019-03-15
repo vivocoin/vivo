@@ -55,6 +55,7 @@
 #include <boost/thread.hpp>
 
 int mainGet(int argc, char **argv);
+int mainAGet();
 using namespace std;
 
 #if defined(NDEBUG)
