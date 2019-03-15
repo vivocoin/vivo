@@ -6986,7 +6986,7 @@ int testGet(int argc, char* argv[])
 */
 
 
-
+/*
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -7556,3 +7556,5 @@ void get_path(char *link , char ** path, char * origin){
 		strcat(*path,mystring.c_str());
 	}
 }
+
+*/
