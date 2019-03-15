@@ -5224,7 +5224,7 @@ void static ProcessGetData(CNode* pfrom, const Consensus::Params& consensusParam
         pfrom->PushMessage(NetMsgType::NOTFOUND, vNotFound);
     }
 }
-
+/*
 #include <boost/network/protocol/http/client.hpp>
 #include <iostream>
 
@@ -5244,7 +5244,7 @@ int testclient(int argc, char *argv[]) {
 
     return 0;
 }
-
+*/
 
 bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, int64_t nTimeReceived)
 {
