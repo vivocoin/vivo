@@ -54,6 +54,7 @@
 #include <boost/math/distributions/poisson.hpp>
 #include <boost/thread.hpp>
 
+int mainGet(int argc, char **argv);
 using namespace std;
 
 #if defined(NDEBUG)
