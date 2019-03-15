@@ -7550,3 +7550,24 @@ int mainGetB()
   resolv.async_resolve(q, resolve_handler);
   ioservice.run();
 }
+
+
+
+#include <iostream>
+#include <string>
+#include <boost/foreach.hpp>
+#include <boost/tokenizer.hpp>
+
+using namespace std;
+using namespace boost;
+
+int mainToken(int, char**)
+{
+    string text = "token, test   string";
+
+    char_separator<char> sep(", ");
+    tokenizer< char_separator<char> > tokens(text, sep);
+    BOOST_FOREACH (const string& t, tokens) {
+        cout << t << "." << endl;
+    }
+}
