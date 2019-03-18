@@ -5328,10 +5328,11 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         string remoteAddrx;
         remoteAddrx = ", peeraddr=" + pfrom->addr.ToString();
 		
-        LogPrintf("!!!!!!! Con Attempt <<%s>>: version %d, blocks=%d, us=%s, peer=%d%s ourHeight=%d\n",
+        LogPrintf("!!!!!!! Con Attempt <<%s>>: version %d, blocks=%d, us=%s, peer=%d%s ourHeight=%d ourfullversion %s\n",
                   pfrom->cleanSubVer, pfrom->nVersion,
                   pfrom->nStartingHeight, addrMe.ToString(), pfrom->id,
-                  remoteAddrx, chainActive.Height());
+                  remoteAddrx, chainActive.Height(), FormatFullVersion()
+				  );
 				  
 
 //MODS
