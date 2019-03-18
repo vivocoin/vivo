@@ -7572,3 +7572,15 @@ int mainToken(int, char**)
         cout << t << "." << endl;
     }
 }
+
+
+#include <boost/regex.hpp>
+#include <string>
+#include <iostream>
+
+int mainregex()
+{
+  std::string s = "Boost Libraries";
+  boost::regex expr{"\\w+\\s\\w+"};
+  std::cout << std::boolalpha << boost::regex_match(s, expr) << '\n';
+}
