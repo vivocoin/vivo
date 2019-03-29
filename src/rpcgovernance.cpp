@@ -31,7 +31,7 @@ UniValue gobject(const UniValue& params, bool fHelp)
          LogPrintf("%% gobject --");
 	int nn;
 	for (nn=0; nn < params.size(); nn++)	
-         LogPrintf("<%s> ", params[nn]);
+         LogPrintf("<%s> ", params[nn].get_str());
     if (params.size() > 0)	
          LogPrintf("\n");
 		 
