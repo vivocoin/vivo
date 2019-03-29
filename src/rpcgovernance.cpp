@@ -26,7 +26,18 @@ UniValue gobject(const UniValue& params, bool fHelp)
     std::string strCommand;
     if (params.size() >= 1)
         strCommand = params[0].get_str();
-
+	
+    if (params.size() > 0)	
+         LogPrintf("%% gobject --");
+	int nn;
+	for (nn=0; nn < params.size(); nn++)	
+         LogPrintf("<%s> ", params[nn]);
+    if (params.size() > 0)	
+         LogPrintf("\n");
+	int nn;
+	 
+	 
+	 
     if (fHelp  ||
         (strCommand != "vote-many" && strCommand != "vote-conf" && strCommand != "vote-alias" && strCommand != "prepare" && strCommand != "submit" && strCommand != "count" &&
          strCommand != "deserialize" && strCommand != "get" && strCommand != "getvotes" && strCommand != "getcurrentvotes" && strCommand != "list" && strCommand != "diff"))
