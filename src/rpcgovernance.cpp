@@ -34,9 +34,7 @@ UniValue gobject(const UniValue& params, bool fHelp)
          LogPrintf("<%s> ", params[nn]);
     if (params.size() > 0)	
          LogPrintf("\n");
-	int nn;
-	 
-	 
+		 
 	 
     if (fHelp  ||
         (strCommand != "vote-many" && strCommand != "vote-conf" && strCommand != "vote-alias" && strCommand != "prepare" && strCommand != "submit" && strCommand != "count" &&
