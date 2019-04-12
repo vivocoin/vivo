@@ -28,10 +28,14 @@ UniValue gobject(const UniValue& params, bool fHelp)
         strCommand = params[0].get_str();
 	
     if (params.size() > 0)	
-         LogPrintf("%% gobject --");
+         LogPrintf("%% gobject --%s:", strCommand);
 	int nn;
-	for (nn=0; nn < params.size(); nn++)	
-         LogPrintf("<%s> ", params[nn].get_str());
+	for (nn=0; nn < params.size(); nn++)	{
+		std::string strC;
+		strC = params[nn].get_str();
+        LogPrintf("<%s> ", params[nn].get_str());		
+	}
+
     if (params.size() > 0)	
          LogPrintf("\n");
 		 

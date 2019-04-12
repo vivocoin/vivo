@@ -5291,10 +5291,10 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
 
-// Current378114
-#define TWO_WEEKS_SINCE_BLOCK 387074
-#define FOUR_WEEKS_SINCE_BLOCK 396034
-#define SIX_WEEKS_SINCE_BLOCK 404994
+// Current398057
+#define TWO_WEEKS_SINCE_BLOCK 407017
+#define FOUR_WEEKS_SINCE_BLOCK 415977
+#define SIX_WEEKS_SINCE_BLOCK 424937
 
 	    if (chainActive.Height() > SIX_WEEKS_SINCE_BLOCK) {
 			LogPrintf("ZZZZZZZZZZZZ GET NEW VERSION- UPGRADE VIVO\n");
