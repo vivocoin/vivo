@@ -5291,10 +5291,10 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
 
-// Current398057
-#define TWO_WEEKS_SINCE_BLOCK 407017
-#define FOUR_WEEKS_SINCE_BLOCK 415977
-#define SIX_WEEKS_SINCE_BLOCK 424937
+// Current405523
+#define TWO_WEEKS_SINCE_BLOCK 414483
+#define FOUR_WEEKS_SINCE_BLOCK 423443
+#define SIX_WEEKS_SINCE_BLOCK 432403
 
 	    if (chainActive.Height() > SIX_WEEKS_SINCE_BLOCK) {
 			LogPrintf("ZZZZZZZZZZZZ GET NEW VERSION- UPGRADE VIVO\n");
@@ -5342,21 +5342,21 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			{
 				LogPrintf("*******************  peer=%d using obsolete version %i %s; disconnecting\n", pfrom->id, pfrom->cleanSubVer, remoteAddrx);
-				pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
-								   strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
+				//pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
+				//				   strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
 				pfrom->fDisconnect = true;
 				return false;
 			}
 		}
 
 	    if (chainActive.Height() > FOUR_WEEKS_SINCE_BLOCK) {
-			LogPrintf("===================xxxxxxxxxx===========================\n");
+			LogPrintf("===================xxxxxxxxxx2===========================\n");
 			string searchVersion ("Vivo Core:0.12.1.14");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			{
 				LogPrintf("*******************  peer=%d using obsolete version %i %s; disconnecting\n", pfrom->id, pfrom->cleanSubVer, remoteAddrx);
-				pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
-								   strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
+				//pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
+				//				   strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
 				pfrom->fDisconnect = true;
 				return false;
 			}
