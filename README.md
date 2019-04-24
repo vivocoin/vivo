@@ -1,5 +1,9 @@
 Master Branch Contains the Latest Code
 
+### Masternode install scripts are located at
+
+https://github.com/coolblock/vpsVivo
+
 Vivo Core staging tree 0.12.1 
 ===============================
 
