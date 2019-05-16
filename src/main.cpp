@@ -5346,7 +5346,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 				  
 
 //MODS
-	    if (chainActive.Height() > LEGACY_TWO_WEEK_CYCLE) {
+	    if (chainActive.Height() > LEGACY_TWO_WEEKS_SINCE_BLOCK) {
 			LogPrintf("===================xxxxxxxxxx1===========================\n");
 			string searchVersion ("Vivo Core:0.12.1.12");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
