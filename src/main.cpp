@@ -5291,18 +5291,22 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
 
-// Current405523
-#define TWO_WEEKS_SINCE_BLOCK 414483
-#define FOUR_WEEKS_SINCE_BLOCK 423443
-#define SIX_WEEKS_SINCE_BLOCK 432403
-
-#define LEGACY_TWO_WEEK_CYCLE 414483
-#define LEGACY_SIX_WEEK_CYCLE 432403
-
-#define THREE_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK 478219
 
 
-	    if (chainActive.Height() > THREE_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK) {
+#define LEGACY_TWO_WEEKS_SINCE_BLOCK 414483
+#define LEGACY_FOUR_WEEKS_SINCE_BLOCK 423443
+#define LEGACY_SIX_WEEKS_SINCE_BLOCK 432403
+
+
+//May 15, 2019 6:19:38 PM
+// Current420307
+#define TWO_WEEKS_SINCE_BLOCK 429267
+#define FOUR_WEEKS_SINCE_BLOCK 438227
+#define SIX_WEEKS_SINCE_BLOCK 447187
+#define THREE_MONTHS_SINCE_BLOCK 474067
+#define FOUR_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK 500947
+
+	    if (chainActive.Height() > FOUR_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK) {
 			LogPrintf("YOU NEED TO GET NEW VERSION- UPGRADE VIVO\n");
 			StartShutdown(); 		
 		}
@@ -5356,9 +5360,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 		}
 
 
-	    if (chainActive.Height() > LEGACY_SIX_WEEK_CYCLE) {
-			LogPrintf("===================xxxxxxxxxx1===========================\n");
-			string searchVersion ("Vivo Core:0.12.1.12");
+	    if (chainActive.Height() > LEGACY_FOUR_WEEKS_SINCE_BLOCK) {
+			LogPrintf("===================xxxxxxxxxx2===========================\n");
+			string searchVersion ("Vivo Core:0.12.1.14");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			{
 				LogPrintf("*******************  peer=%d using obsolete version %i %s; disconnecting\n", pfrom->id, pfrom->cleanSubVer, remoteAddrx);
@@ -5370,9 +5374,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 		}
 		
 		
-	    if (chainActive.Height() > LEGACY_TWO_WEEK_CYCLE) {
-			LogPrintf("===================xxxxxxxxxx2===========================\n");
-			string searchVersion ("Vivo Core:0.12.1.14");
+	    if (chainActive.Height() > LEGACY_SIX_WEEKS_SINCE_BLOCK) {
+			LogPrintf("===================xxxxxxxxxx3===========================\n");
+			string searchVersion ("Vivo Core:0.12.1.15");
 			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
 			{
 				LogPrintf("*******************  peer=%d using obsolete version %i %s; disconnecting\n", pfrom->id, pfrom->cleanSubVer, remoteAddrx);
