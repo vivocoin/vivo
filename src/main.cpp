@@ -5333,7 +5333,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             vRecv >> LIMITED_STRING(pfrom->strSubVer, MAX_SUBVERSION_LENGTH);
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
         }
-
+		
+        if (!vRecv.empty())
+            vRecv >> pfrom->nStartingHeight;
 		
         string remoteAddrx;
         remoteAddrx = ", peeraddr=" + pfrom->addr.ToString();
@@ -5389,8 +5391,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 //END MODS		
 		
 		
-        if (!vRecv.empty())
-            vRecv >> pfrom->nStartingHeight;
+
         if (!vRecv.empty())
             vRecv >> pfrom->fRelayTxes; // set to true after we get the first filter* message
         else
