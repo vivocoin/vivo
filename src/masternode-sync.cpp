@@ -489,7 +489,8 @@ void CMasternodeSync::ProcessTick()
                 if (pnode->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) continue;
 				if(pnode->nVersion == 70209) continue;	
 				if(pnode->nVersion == 70208) continue;	
-
+				//exsplit	
+				
                 nRequestedMasternodeAttempt++;
 
                 SendGovernanceSyncRequest(pnode);
@@ -507,6 +508,7 @@ void CMasternodeSync::SendGovernanceSyncRequest(CNode* pnode)
 {
     if(pnode->nVersion != 70209)	
 	if(pnode->nVersion != 70208)	
+	//exsplit	
 
     if(pnode->nVersion >= GOVERNANCE_FILTER_PROTO_VERSION) {
         CBloomFilter filter;

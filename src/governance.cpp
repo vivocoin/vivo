@@ -109,7 +109,8 @@ void CGovernanceManager::ProcessMessage(CNode* pfrom, std::string& strCommand, C
 
     if(pfrom->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) return;
     if(pfrom->nVersion == 70209) return;	
-    if(pfrom->nVersion == 70208) return;	
+    if(pfrom->nVersion == 70208) return;
+	//exsplit	
 	
     // ANOTHER USER IS ASKING US TO HELP THEM SYNC GOVERNANCE OBJECT DATA
     if (strCommand == NetMsgType::MNGOVERNANCESYNC)
@@ -127,7 +128,8 @@ void CGovernanceManager::ProcessMessage(CNode* pfrom, std::string& strCommand, C
 
 		
 	    if(pfrom->nVersion != 70209)	
-		if(pfrom->nVersion != 70208)	
+		if(pfrom->nVersion != 70208)
+	    //exsplit				
         if(pfrom->nVersion >= GOVERNANCE_FILTER_PROTO_VERSION) {
             vRecv >> filter;
             filter.UpdateEmptyFull();
@@ -1163,6 +1165,7 @@ int CGovernanceManager::RequestGovernanceObjectVotes(const std::vector<CNode*>& 
             if(pnode->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) continue;
 			if(pnode->nVersion == 70209) continue;	
 			if(pnode->nVersion == 70208) continue;	
+			//exsplit	
 			
             // stop early to prevent setAskFor overflow
             size_t nProjectedSize = pnode->setAskFor.size() + nProjectedVotes;
