@@ -2139,9 +2139,9 @@ void RelayInv(CInv &inv, const int minProtoVersion) {
     BOOST_FOREACH(CNode* pnode, vNodes)
 	{		
 		string searchVersion ("Vivo Core:0.12.1.12");
-		if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
+		if (pnode->cleanSubVer.find(searchVersion) != std::string::npos)
 		{
-			LogPrintf("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\n");
+			LogPrintf("ZZZZZZZZZZZZZZZZZZZZZ .12 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\n");
 		} else
         if(pnode->nVersion >= 70210)
             pnode->PushInventory(inv);
