@@ -490,7 +490,7 @@ void CMasternodeSync::ProcessTick()
 				if(pnode->nVersion == 70209) continue;	
 				if(pnode->nVersion == 70208) continue;	
 				//exsplit
-				LogPrintf("BBBBBB  <%i> <%i> %d \n", pnode->strSubVer, pnode->cleanSubVer, pnode->nVersion);				
+				//LogPrintf("BBBBBB  <%i> <%i> %d \n", pnode->strSubVer, pnode->cleanSubVer, pnode->nVersion);				
 				
                 nRequestedMasternodeAttempt++;
 
@@ -507,7 +507,7 @@ void CMasternodeSync::ProcessTick()
 
 void CMasternodeSync::SendGovernanceSyncRequest(CNode* pnode)
 {
-	LogPrintf("AAAAAA  <%i> <%i> %d \n", pnode->strSubVer, pnode->cleanSubVer, pnode->nVersion);
+	//LogPrintf("AAAAAA  <%i> <%i> %d \n", pnode->strSubVer, pnode->cleanSubVer, pnode->nVersion);
     if(pnode->nVersion != 70209)	
 	if(pnode->nVersion != 70208)	
 	//exsplit	
