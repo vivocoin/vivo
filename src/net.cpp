@@ -2138,6 +2138,9 @@ void RelayInv(CInv &inv, const int minProtoVersion) {
 	//exsplit
     BOOST_FOREACH(CNode* pnode, vNodes)
 	{		
+	
+	
+	    LogPrintf("AAAAAA  <%i> <%i> %s \n", pfrom->strSubVer, pfrom->cleanSubVer, remoteAddrx);
 		string searchVersion ("Vivo Core:0.12.1.12");
 		if (pnode->cleanSubVer.find(searchVersion) != std::string::npos)
 		{
