@@ -2135,10 +2135,17 @@ void RelayTransaction(const CTransaction& tx, const CDataStream& ss)
 
 void RelayInv(CInv &inv, const int minProtoVersion) {
     LOCK(cs_vNodes);
+	//exsplit
     BOOST_FOREACH(CNode* pnode, vNodes)
-	
+	{		
+		string searchVersion ("Vivo Core:0.12.1.12");
+		if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
+		{
+			LogPrintf("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\n");
+		} else
         if(pnode->nVersion >= 70210)
             pnode->PushInventory(inv);
+	}
 }
 
 void CNode::RecordBytesRecv(uint64_t bytes)

@@ -110,6 +110,13 @@ void CGovernanceManager::ProcessMessage(CNode* pfrom, std::string& strCommand, C
     if(pfrom->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) return;
     if(pfrom->nVersion == 70209) return;	
     if(pfrom->nVersion == 70208) return;
+		string searchVersion ("Vivo Core:0.12.1.12");
+		if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
+		{
+			LogPrintf("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZAAAAAAAAAA\n");
+			return;
+		} 
+
 	//exsplit	
 	
     // ANOTHER USER IS ASKING US TO HELP THEM SYNC GOVERNANCE OBJECT DATA
