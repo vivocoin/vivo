@@ -2140,7 +2140,7 @@ void RelayInv(CInv &inv, const int minProtoVersion) {
 	{		
 	
 	
-	    LogPrintf("AAAAAA  <%i> <%i> %d \n", pnode->strSubVer, pnode->cleanSubVer, pnode->nVersion);
+	    //LogPrintf("AAAAAA  <%i> <%i> %d \n", pnode->strSubVer, pnode->cleanSubVer, pnode->nVersion);
 		string searchVersion ("Vivo Core:0.12.1.12");
 		if (pnode->cleanSubVer.find(searchVersion) != std::string::npos)
 		{
