@@ -1581,8 +1581,8 @@ void ThreadOpenConnections()
                 continue;
 
             // do not allow non-default ports, unless after 50 invalid addresses selected already
-            if (addr.GetPort() != Params().GetDefaultPort() && nTries < 50)
-                continue;
+            //if (addr.GetPort() != Params().GetDefaultPort() && nTries < 50)
+            //    continue;
 
             addrConnect = addr;
             break;
@@ -2135,10 +2135,20 @@ void RelayTransaction(const CTransaction& tx, const CDataStream& ss)
 
 void RelayInv(CInv &inv, const int minProtoVersion) {
     LOCK(cs_vNodes);
+	//exsplit
     BOOST_FOREACH(CNode* pnode, vNodes)
+	{		
 	
+	
+	    //LogPrintf("AAAAAA  <%i> <%i> %d \n", pnode->strSubVer, pnode->cleanSubVer, pnode->nVersion);
+		string searchVersion ("Vivo Core:0.12.1.12");
+		if (pnode->cleanSubVer.find(searchVersion) != std::string::npos)
+		{
+			LogPrintf("ZZZZZZZZZZZZZZZZZZZZZ .12 ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ\n");
+		} else
         if(pnode->nVersion >= 70210)
             pnode->PushInventory(inv);
+	}
 }
 
 void CNode::RecordBytesRecv(uint64_t bytes)

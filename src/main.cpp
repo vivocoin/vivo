@@ -5305,11 +5305,12 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 #define SIX_WEEKS_SINCE_BLOCK 447187
 #define THREE_MONTHS_SINCE_BLOCK 474067
 #define FOUR_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK 500947
+#define SIX_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK 559811
 
-	    if (chainActive.Height() > FOUR_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK) {
-			LogPrintf("YOU NEED TO GET NEW VERSION- UPGRADE VIVO\n");
-			StartShutdown(); 		
-		}
+	    //if (chainActive.Height() > SIX_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK) {
+		//	LogPrintf("YOU NEED TO GET NEW VERSION- UPGRADE VIVO\n");
+		//	StartShutdown(); 		
+		//}
 		
 		
         if (pfrom->nVersion < 70210)
@@ -5333,7 +5334,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             vRecv >> LIMITED_STRING(pfrom->strSubVer, MAX_SUBVERSION_LENGTH);
             pfrom->cleanSubVer = SanitizeString(pfrom->strSubVer);
         }
-
+		
+        if (!vRecv.empty())
+            vRecv >> pfrom->nStartingHeight;
 		
         string remoteAddrx;
         remoteAddrx = ", peeraddr=" + pfrom->addr.ToString();
@@ -5386,11 +5389,27 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 				return false;
 			}
 		}
+		
+	    if (chainActive.Height() > FOUR_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK) {
+			LogPrintf("===================xxxxxxxxxx4===========================\n");
+			string searchVersion ("Vivo Core:0.12.1.16");
+			if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
+			{
+				LogPrintf("*******************  peer=%d using obsolete version %i %s; disconnecting\n", pfrom->id, pfrom->cleanSubVer, remoteAddrx);
+				//pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE,
+				//				   strprintf("Version must be %d or greater", MIN_PEER_PROTO_VERSION));
+				pfrom->fDisconnect = true;
+				return false;
+			}
+		}
+
+		
+		
+		
 //END MODS		
 		
 		
-        if (!vRecv.empty())
-            vRecv >> pfrom->nStartingHeight;
+
         if (!vRecv.empty())
             vRecv >> pfrom->fRelayTxes; // set to true after we get the first filter* message
         else

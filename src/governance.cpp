@@ -106,10 +106,18 @@ void CGovernanceManager::ProcessMessage(CNode* pfrom, std::string& strCommand, C
     // lite mode is not supported
     if(fLiteMode) return;
     if(!masternodeSync.IsBlockchainSynced()) return;
-
+	//LogPrintf("GGGGGG  <%i> <%i> %d \n", pfrom->strSubVer, pfrom->cleanSubVer, pfrom->nVersion);
     if(pfrom->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) return;
     if(pfrom->nVersion == 70209) return;	
-    if(pfrom->nVersion == 70208) return;	
+    if(pfrom->nVersion == 70208) return;
+		string searchVersion ("Vivo Core:0.12.1.12");
+		if (pfrom->cleanSubVer.find(searchVersion) != std::string::npos)
+		{
+			LogPrintf("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZAAAAAAAAAA\n");
+			return;
+		} 
+
+	//exsplit	
 	
     // ANOTHER USER IS ASKING US TO HELP THEM SYNC GOVERNANCE OBJECT DATA
     if (strCommand == NetMsgType::MNGOVERNANCESYNC)
@@ -127,7 +135,8 @@ void CGovernanceManager::ProcessMessage(CNode* pfrom, std::string& strCommand, C
 
 		
 	    if(pfrom->nVersion != 70209)	
-		if(pfrom->nVersion != 70208)	
+		if(pfrom->nVersion != 70208)
+	    //exsplit				
         if(pfrom->nVersion >= GOVERNANCE_FILTER_PROTO_VERSION) {
             vRecv >> filter;
             filter.UpdateEmptyFull();
@@ -1051,6 +1060,8 @@ void CGovernanceManager::RequestGovernanceObject(CNode* pfrom, const uint256& nH
         return;
     }
 
+	//LogPrintf("FFFFFF  <%i> <%i> %d \n", pfrom->strSubVer, pfrom->cleanSubVer, pfrom->nVersion);
+	
     LogPrint("gobject", "CGovernanceObject::RequestGovernanceObject -- hash = %s (peer=%d)\n", nHash.ToString(), pfrom->GetId());
 
     if(pfrom->nVersion < GOVERNANCE_FILTER_PROTO_VERSION) {
@@ -1079,7 +1090,11 @@ void CGovernanceManager::RequestGovernanceObject(CNode* pfrom, const uint256& nH
 
 int CGovernanceManager::RequestGovernanceObjectVotes(CNode* pnode)
 {
+	//LogPrintf("DDDDDD  <%i> <%i> %d \n", pnode->strSubVer, pnode->cleanSubVer, pnode->nVersion);
     if(pnode->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) return -3;
+	//exsplit
+	
+	
     std::vector<CNode*> vNodesCopy;
     vNodesCopy.push_back(pnode);
     return RequestGovernanceObjectVotes(vNodesCopy);
@@ -1158,12 +1173,14 @@ int CGovernanceManager::RequestGovernanceObjectVotes(const std::vector<CNode*>& 
             // they stay connected for a short period of time and it's possible that we won't get everything we should.
             // Only use outbound connections - inbound connection could be a "masternode" connection
             // initialted from another node, so skip it too.
+			//LogPrintf("CCCCCC  <%i> <%i> %d \n", pnode->strSubVer, pnode->cleanSubVer, pnode->nVersion);
             if(pnode->fMasternode || (fMasterNode && pnode->fInbound)) continue;
             // only use up to date peers
             if(pnode->nVersion < MIN_GOVERNANCE_PEER_PROTO_VERSION) continue;
 			if(pnode->nVersion == 70209) continue;	
 			if(pnode->nVersion == 70208) continue;	
-			
+			//exsplit	
+
             // stop early to prevent setAskFor overflow
             size_t nProjectedSize = pnode->setAskFor.size() + nProjectedVotes;
             if(nProjectedSize > SETASKFOR_MAX_SZ/2) continue;
