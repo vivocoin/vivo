@@ -5307,10 +5307,10 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 #define FOUR_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK 500947
 #define SIX_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK 559811
 
-	    if (chainActive.Height() > SIX_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK) {
-			LogPrintf("YOU NEED TO GET NEW VERSION- UPGRADE VIVO\n");
-			StartShutdown(); 		
-		}
+	    //if (chainActive.Height() > SIX_MONTHS_PLUS_TWOWEEKS_SINCE_BLOCK) {
+		//	LogPrintf("YOU NEED TO GET NEW VERSION- UPGRADE VIVO\n");
+		//	StartShutdown(); 		
+		//}
 		
 		
         if (pfrom->nVersion < 70210)
