@@ -12,7 +12,7 @@ Vivo Core staging tree 0.12.1
 http://www.vivocoin.net
 
 
-What is Vivo?
+What is Vivocoin? (The alt-coin that promises to never go away)
 ----------------
 
 VIVO is an advanced, decentralized and secure digital currency. Based on Dash, it's an enhanced and further developed version, featuring the masternode technology, near-instant and secure payments as well as anonymous transactions. With a fast block time of only 2 minutes, transactions will usually confirm and be successfully processed very quickly. VIVO's blockchain uses the advanced NeoScrypt Proof-of-Work algorithm to secure the network. NeoScrypt is ASIC resistant and ensures a fair and stable return on investment for the miners.
